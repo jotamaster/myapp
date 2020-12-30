@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
-import { Provider } from "react-redux";
-import { store } from '../store/store'
+import { useSelector } from "react-redux";
 import { StyleSheet } from 'react-native';
 import RegisterScreen from './Auth/RegisterScreen';
 import LoginScreen from './Auth/LoginScreen';
@@ -35,13 +34,19 @@ const AuthStack = () =>{
 }
 
 
+
+
 export default  Main = () => {
+  const user = useSelector(state => state.AuthReducer)
   return (
-    <Provider store={store}>
       <NavigationContainer>
-        <HomeStack/>
+        {
+          !!user.name 
+          ? <HomeStack/>
+          : <AuthStack/>
+        }
+          
       </NavigationContainer>
-    </Provider>
 
   );
 }

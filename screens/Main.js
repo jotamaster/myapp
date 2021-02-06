@@ -41,9 +41,10 @@ export default  Main = () => {
   return (
       <NavigationContainer>
         {
-          !!user.name 
-          ? <HomeStack/>
-          : <AuthStack/>
+          <HomeStack/>
+          // !!user.name 
+          // ? <HomeStack/>
+          // : <AuthStack/>
         }
           
       </NavigationContainer>

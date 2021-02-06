@@ -1,14 +1,40 @@
-import React from 'react'
-import { View, Text,Button,TextInput, StyleSheet, ImageBackground,TouchableOpacity } from 'react-native'
+import React,  { useState }  from 'react'
+import { View, Text,Button,TextInput, StyleSheet, ImageBackground,TouchableOpacity,Platform,ToastAndroid } from 'react-native'
 import { useDispatch } from "react-redux";
 import { login } from '../../actions/auth';
+import api from '../../services/api';
 
 export default LoginScreen =  () => {
     const dispatch = useDispatch()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-    const handleLogin = () => {
+    const handleLogin = (email,password) => {
+        console.log(email,password)
+        api.post('/api/auth/login',{
+            email,
+            password
+        }).then(response =>{
+            const { username, access_token } = response.data
+            dispatch(login( username ,'elcorreo', access_token))
+        }).catch((e)=>{
+            console.log('credenciales invalidas',e)
+            handleToast()
+        })
 
-        dispatch(login('jean','elcorreo','supertoken$%@^#'))
+        const handleToast = () =>{
+            if (Platform.OS == 'android') {
+                ToastAndroid.showWithGravityAndOffset(
+                    "Credenciales incorrectas",
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    25,
+                    50
+                  );
+            }
+        }
+
+        
     }
     return (
         <View style={styles.container}>
@@ -17,13 +43,15 @@ export default LoginScreen =  () => {
             
             <Text style={styles.label}>Usuario</Text>
             <TextInput
+                onChangeText={ (val) => setEmail(val) } value={email} 
                 style={styles.textInput}
             />
-            <Text style={styles.label}>Password</Text>
+            <Text  style={styles.label}>Password</Text>
             <TextInput
+                onChangeText={ (val) => setPassword(val) } value={password}
                 style={styles.textInput}
             />
-            <TouchableOpacity onPress={handleLogin} style={styles.btn}>
+            <TouchableOpacity onPress={() => handleLogin(email,password)} style={styles.btn}>
                 <Text style={styles.btnText} >Ingresa</Text>
             </TouchableOpacity>
             </ImageBackground>

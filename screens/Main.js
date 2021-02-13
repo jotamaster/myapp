@@ -9,6 +9,8 @@ import RegisterScreen from './Auth/RegisterScreen';
 import LoginScreen from './Auth/LoginScreen';
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
+import LessonDetail from './LessonDetail';
+import CardLesson from '../components/CardLesson';
 
 
 
@@ -18,8 +20,16 @@ const Drawer = createDrawerNavigator();
 const HomeStack = () =>{
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen 
+        name="Home" 
+        options={{
+          title:'Lessons',
+          headerTitleStyle: { alignSelf: 'center' }
+        }} 
+        component={HomeScreen} 
+      />
       <Stack.Screen name="Details" component={DetailScreen} />
+      <Stack.Screen name="Lesson" component={LessonDetail} />
     </Stack.Navigator>
   )
 }

@@ -29,7 +29,7 @@ const HomeStack = () =>{
         component={HomeScreen} 
       />
       <Stack.Screen name="Details" component={DetailScreen} />
-      <Stack.Screen name="Lesson" component={LessonDetail} />
+      <Stack.Screen name="Lesson" options={({ route }) => ({ title: `Lesson: ${route.params.fecha}` })} component={LessonDetail} />
     </Stack.Navigator>
   )
 }

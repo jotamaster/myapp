@@ -7,7 +7,7 @@ import api from '../services/api'
 import CardLesson from "../components/CardLesson";
 
 
-export default HomeScreen = ({navigation}) => {
+export default HomeScreen = ({route,navigation}) => {
 
     //const [users,setUsers] = useState([])
 
@@ -25,6 +25,11 @@ export default HomeScreen = ({navigation}) => {
     const handleLogout = () => {
         dispatch(logout())
     }
+
+    let fakedata = {
+        fecha: ' 10 noviembre 2021',
+        teacher: 'juanito'
+    }
     
     return (
         <View style={styles.container}>
@@ -37,9 +42,9 @@ export default HomeScreen = ({navigation}) => {
                 title="Salir"
                 onPress={handleLogout}
             /> */}
-            <CardLesson navigation={navigation}></CardLesson>
-            <CardLesson navigation={navigation}></CardLesson>
-            <CardLesson navigation={navigation}></CardLesson>
+            <CardLesson lesson={fakedata} navigation={navigation}></CardLesson>
+            <CardLesson lesson={fakedata}  navigation={navigation}></CardLesson>
+            <CardLesson lesson={fakedata}   navigation={navigation}></CardLesson>
         </View>
     )
 }

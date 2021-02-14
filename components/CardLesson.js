@@ -1,10 +1,10 @@
 import React from 'react'
 import {View,Text,StyleSheet, TouchableOpacity, Button} from 'react-native'
 
-export default  CardLesson = ({navigation}) => {
-  console.log(navigator)
+export default  CardLesson = ({navigation, lesson}) => {
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Lesson')} style={styles.CardLessonContainer}>
+    <TouchableOpacity onPress={() => navigation.navigate('Lesson',lesson)} style={styles.CardLessonContainer}>
       <View style={styles.CardLesson}>
         <View style={styles.content} >
           <View style={styles.contentIcon} >
@@ -13,7 +13,7 @@ export default  CardLesson = ({navigation}) => {
             </View>
           </View>
           <View style={styles.info}>
-            <Text style={styles.infotext}> Fecha original: 14 de Febrero</Text>
+            <Text style={styles.infotext}> Fecha original: {lesson.fecha} </Text>
           </View>
         </View>
       </View>

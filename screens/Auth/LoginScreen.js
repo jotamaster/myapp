@@ -10,7 +10,6 @@ export default LoginScreen =  () => {
     const [password, setPassword] = useState('')
 
     const handleLogin = (email,password) => {
-        console.log(email,password)
         api.post('/api/auth/login',{
             email,
             password

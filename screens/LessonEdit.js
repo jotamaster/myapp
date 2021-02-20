@@ -1,8 +1,16 @@
-import React from 'react'
-import { View, Text, StyleSheet,TextInput } from 'react-native'
+import React, {useState} from 'react'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { FloatingAction } from 'react-native-floating-action'
 
-export default  LessonDetail = ({ route, navigation }) => {
+export default  LessonEdit = ({ route, navigation }) => {
+  const [teacher, setTeacher] = useState('');
+  const [unit, setUnit] = useState('');
+  const [objetive, setObjetive] = useState('');
+  const [homework, setHomework] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [comments, setComments] = useState('');
+
+
   const { fecha } = route.params;
   const actions = [
     {
@@ -17,7 +25,7 @@ export default  LessonDetail = ({ route, navigation }) => {
 
     switch (name) {
       case 'bt_edit':
-        navigation.navigate('LessonEdit', {fecha})
+        navigation.navigate('Home')
         break;
     
       default:
@@ -75,9 +83,11 @@ export default  LessonDetail = ({ route, navigation }) => {
             </Text>
           </View>
           <View  >
-            <Text style={styles.valueDate}>
-              9 Going away
-            </Text>
+          <TextInput
+              style={styles.TextInput}
+              onChangeText={text => setUnit(text)}
+              value={unit}
+            />
           </View>
         </View>
       </View>
@@ -90,9 +100,11 @@ export default  LessonDetail = ({ route, navigation }) => {
             </Text>
           </View>
           <View  >
-            <Text style={styles.valueDate}>
-              Aprender y practivar el pasado simple
-            </Text>
+          <TextInput
+              style={styles.TextInput}
+              onChangeText={text => setObjetive(text)}
+              value={objetive}
+            />
           </View>
         </View>
       </View>
@@ -105,9 +117,11 @@ export default  LessonDetail = ({ route, navigation }) => {
             </Text>
           </View>
           <View  >
-            <Text style={styles.valueDate}>
-              Unid 9, from point 1 to 3.
-            </Text>
+          <TextInput
+              style={styles.TextInput}
+              onChangeText={text => setHomework(text)}
+              value={homework}
+            />
           </View>
         </View>
       </View>
@@ -120,9 +134,11 @@ export default  LessonDetail = ({ route, navigation }) => {
             </Text>
           </View>
           <View  >
-            <Text style={styles.valueDate}>
-              Journey, travel
-            </Text>
+          <TextInput
+              style={styles.TextInput}
+              onChangeText={text => setKeywords(text)}
+              value={keywords}
+            />
           </View>
         </View>
       </View>
@@ -134,10 +150,14 @@ export default  LessonDetail = ({ route, navigation }) => {
               Comments
             </Text>
           </View>
-          <View style={styles.comments}  >
-            <Text style={styles.valueDate}>
-              Me falta repasar pronunciacion de Museum// miusiiam 
-            </Text>
+          <View >
+          <TextInput
+              multiline={true}
+              numberOfLines={4}
+              style={styles.TextInput}
+              onChangeText={text => setComments(text)}
+              value={comments}
+            />
           </View>
         </View>
       </View>
@@ -185,5 +205,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding:10
+  },
+  TextInput:{
+    height: 40,
+    borderColor: 'gray', 
+    borderWidth: 1,
+    padding: 5
   }
+  
 })

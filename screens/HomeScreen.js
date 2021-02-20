@@ -43,8 +43,8 @@ export default HomeScreen = ({route,navigation}) => {
                 onPress={handleLogout}
             /> */}
             <CardLesson lesson={fakedata} navigation={navigation}></CardLesson>
-            <CardLesson lesson={fakedata}  navigation={navigation}></CardLesson>
-            <CardLesson lesson={fakedata}   navigation={navigation}></CardLesson>
+            <CardLesson lesson={fakedata} navigation={navigation}></CardLesson>
+            <CardLesson lesson={fakedata} navigation={navigation}></CardLesson>
         </View>
     )
 }

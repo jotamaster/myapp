@@ -10,7 +10,7 @@ import LoginScreen from './Auth/LoginScreen';
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
 import LessonDetail from './LessonDetail';
-import CardLesson from '../components/CardLesson';
+import LessonEdit from './LessonEdit';
 
 
 
@@ -29,7 +29,16 @@ const HomeStack = () =>{
         component={HomeScreen} 
       />
       <Stack.Screen name="Details" component={DetailScreen} />
-      <Stack.Screen name="Lesson" options={({ route }) => ({ title: `Lesson: ${route.params.fecha}` })} component={LessonDetail} />
+      <Stack.Screen 
+        name="Lesson" 
+        options={({ route }) => ({ title: `Lesson: ${route.params.fecha}` })} 
+        component={LessonDetail} 
+      />
+      <Stack.Screen 
+        name="LessonEdit" 
+        options={({ route }) => ({ title: `Lesson Edit: ${route.params.fecha}` })} 
+        component={LessonEdit} 
+      />
     </Stack.Navigator>
   )
 }

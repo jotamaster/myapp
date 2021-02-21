@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet,TextInput } from 'react-native'
+import { View, Text, StyleSheet,Dimensions  } from 'react-native'
 import { FloatingAction } from 'react-native-floating-action'
 
 export default  LessonDetail = ({ route, navigation }) => {
@@ -157,9 +157,10 @@ export default  LessonDetail = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   main:{
-    padding: 10
+    padding: 10,
+    flex:1
   },
-  dates:{
+    dates:{
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

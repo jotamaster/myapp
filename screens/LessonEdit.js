@@ -8,8 +8,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Button,
 } from "react-native";
+import RNPickerSelect from 'react-native-picker-select';
 const height = Dimensions.get("window").height;
 export default LessonEdit = ({ route, navigation }) => {
   const [teacher, setTeacher] = useState("");
@@ -28,137 +28,146 @@ export default LessonEdit = ({ route, navigation }) => {
     },
   ];
 
-  return (
-    // <KeyboardAvoidingView
-    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
-    //   style={styles.container}
-    // >
-    //   <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    //     <View style={styles.inner}>
-    //       <Text style={styles.header}>Header</Text>
-    //       <TextInput placeholder="Username" style={styles.textInput} />
-    //       <View style={styles.btnContainer}>
-    //         <Button title="Submit" onPress={() => null} />
-    //       </View>
-    //     </View>
-    //   </TouchableWithoutFeedback>
-    // </KeyboardAvoidingView>
+  const dataSelect = [
+    {
+      label: 'Red',
+      value: 'red',
+    },
+    {
+      label: 'Orange',
+      value: 'orange',
+    },
+    {
+      label: 'Blue',
+      value: 'blue',
+    },
+  ]
 
+  return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.inner}>
-          
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Original date</Text>
-                </View>
-                <View>
-                  <Text style={styles.valueDate}>November 10th 2021</Text>
-                </View>
-              </View>
-              <View style={styles.newDate}>
-                <View>
-                  <Text style={styles.labelDate}>New date</Text>
-                </View>
-                <View>
-                  <Text style={styles.valueDate}>November 11th 2021</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Teacher</Text>
-                </View>
-                <View>
-                  <Text style={styles.valueDate}>Gustavo</Text>
-                </View>
-              </View>
-            </View>
 
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Unit</Text>
-                </View>
-                <View>
-                  <TextInput
-                    style={styles.TextInput}
-                    onChangeText={(text) => setUnit(text)}
-                    value={unit}
-                  />
-                </View>
+
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Original date</Text>
+              </View>
+              <View>
+                <Text style={styles.valueDate}>November 10th 2021</Text>
               </View>
             </View>
-
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Objective</Text>
-                </View>
-                <View>
-                  <TextInput
-                    style={styles.TextInput}
-                    onChangeText={(text) => setObjetive(text)}
-                    value={objetive}
-                  />
-                </View>
+            <View style={styles.newDate}>
+              <View>
+                <Text style={styles.labelDate}>New date</Text>
+              </View>
+              <View>
+                <Text style={styles.valueDate}>November 11th 2021</Text>
               </View>
             </View>
-
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Homework</Text>
-                </View>
-                <View>
-                  <TextInput
-                    style={styles.TextInput}
-                    onChangeText={(text) => setHomework(text)}
-                    value={homework}
-                  />
-                </View>
+          </View>
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Teacher</Text>
+              </View>
+              <View style={styles.border}>
+                <RNPickerSelect
+                  style={{...pickerSelectStyles}}
+                  onValueChange={(value) => console.log(value)}
+                  items={[
+                    { label: 'Gustavo', value: 'Gustavo' },
+                    { label: 'Andres', value: 'Andres' },
+                    { label: 'Max', value: 'Max' },
+                  ]}
+                />
               </View>
             </View>
+          </View>
 
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>
-                    Palabras Claves (Keywords)
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Unit</Text>
+              </View>
+              <View>
+                <TextInput
+                  style={styles.TextInput}
+                  onChangeText={(text) => setUnit(text)}
+                  value={unit}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Objective</Text>
+              </View>
+              <View>
+                <TextInput
+                  style={styles.TextInput}
+                  onChangeText={(text) => setObjetive(text)}
+                  value={objetive}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Homework</Text>
+              </View>
+              <View>
+                <TextInput
+                  style={styles.TextInput}
+                  onChangeText={(text) => setHomework(text)}
+                  value={homework}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>
+                  Palabras Claves (Keywords)
                   </Text>
-                </View>
-                <View>
-                  <TextInput
-                    style={styles.TextInput}
-                    onChangeText={(text) => setKeywords(text)}
-                    value={keywords}
-                  />
-                </View>
+              </View>
+              <View>
+                <TextInput
+                  style={styles.TextInput}
+                  onChangeText={(text) => setKeywords(text)}
+                  value={keywords}
+                />
               </View>
             </View>
+          </View>
 
-            <View style={styles.dates}>
-              <View style={styles.originalDate}>
-                <View>
-                  <Text style={styles.labelDate}>Comments</Text>
-                </View>
-                <View>
-                  <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    style={styles.TextInput}
-                    onChangeText={(text) => setComments(text)}
-                    value={comments}
-                  />
-                </View>
+          <View style={styles.dates}>
+            <View style={styles.originalDate}>
+              <View>
+                <Text style={styles.labelDate}>Comments</Text>
+              </View>
+              <View>
+                <TextInput
+                  multiline={true}
+                  numberOfLines={4}
+                  style={styles.TextInput}
+                  onChangeText={(text) => setComments(text)}
+                  value={comments}
+                />
               </View>
             </View>
-          
+          </View>
+
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -208,7 +217,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     padding: 24,
-    paddingBottom:90,
+    paddingBottom: 80,
     flex: 1,
     justifyContent: "space-around",
   },
@@ -226,4 +235,31 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 12,
   },
+  border:{borderColor: 'grey',
+  borderWidth: 1,
+  borderRadius: 10,}
 });
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    borderWidth: 1,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
+

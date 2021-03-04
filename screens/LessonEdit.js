@@ -8,9 +8,12 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Button
 } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
-const height = Dimensions.get("window").height;
+import DateTimePickerModal from "react-native-modal-datetime-picker"; 
+
+
 export default LessonEdit = ({ route, navigation }) => {
   const [teacher, setTeacher] = useState("");
   const [unit, setUnit] = useState("");
@@ -18,6 +21,22 @@ export default LessonEdit = ({ route, navigation }) => {
   const [homework, setHomework] = useState("");
   const [keywords, setKeywords] = useState("");
   const [comments, setComments] = useState("");
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    console.log("A date has been picked: ", date);
+    hideDatePicker();
+  };
+
+
 
   const { fecha } = route.params;
   const actions = [
@@ -66,7 +85,14 @@ export default LessonEdit = ({ route, navigation }) => {
                 <Text style={styles.labelDate}>New date</Text>
               </View>
               <View>
-                <Text style={styles.valueDate}>November 11th 2021</Text>
+              <Button title="Show Date Picker" onPress={showDatePicker} />
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                date={new Date}
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
               </View>
             </View>
           </View>

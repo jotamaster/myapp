@@ -53,18 +53,17 @@ const styles = StyleSheet.create({
     height:'100%',
     display: 'flex',
     justifyContent: 'center',
+    paddingTop:1
   },
   icon:{
     backgroundColor: 'green',
-    borderRadius: 100,
-    height:'80%',
-    width:'80%',
-    marginLeft: '10%',
+    height:'97%',
+    width:'96%',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
-    paddingStart: '28%',
-    paddingTop: '18%',
+    paddingStart: '35%',
+    paddingTop: '25%',
     
   },
   letter:{
@@ -83,3 +82,4 @@ const styles = StyleSheet.create({
     fontSize:18
   }
 })
+

@@ -21,6 +21,7 @@ export default LessonEdit = ({ route, navigation }) => {
   const [homework, setHomework] = useState("");
   const [keywords, setKeywords] = useState("");
   const [comments, setComments] = useState("");
+  const [initialDate, setInitialDate] = useState(new Date)
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
@@ -34,6 +35,7 @@ export default LessonEdit = ({ route, navigation }) => {
   const handleConfirm = (date) => {
     console.log("A date has been picked: ", date);
     hideDatePicker();
+    setInitialDate(date)
   };
 
 
@@ -89,7 +91,7 @@ export default LessonEdit = ({ route, navigation }) => {
               <DateTimePickerModal
                 isVisible={isDatePickerVisible}
                 mode="date"
-                date={new Date}
+                date={initialDate}
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
               />
@@ -193,6 +195,11 @@ export default LessonEdit = ({ route, navigation }) => {
               </View>
             </View>
           </View>
+
+          <View style={{marginTop:5}}>
+            <Button title="Save"/>
+          </View>
+          
 
         </View>
       </TouchableWithoutFeedback>
